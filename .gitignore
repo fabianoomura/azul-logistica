@@ -1,0 +1,34 @@
+# Credenciais e ambiente local
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Ferramentas
+.deepeval/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Saidas geradas em runtime
+downloads_cte/
+
+# Backups / arquivos compactados (nunca versionar)
+*.rar
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.bak
+
+# Editores / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

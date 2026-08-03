@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "azul-logistica": {
+      "command": "python",
+      "args": [
+        "/caminho/para/azul-logistica/azul_mcp_server.py"
+      ],
+      "cwd": "/caminho/para/azul-logistica"
+    }
+  }
+}
