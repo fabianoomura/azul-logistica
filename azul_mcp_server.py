@@ -33,6 +33,7 @@ class AzulCargoClient:
         self.taxa_manuseio = float(os.getenv("TAXA_MANUSEIO", "0") or 0)
         self.token: str | None = None
         self.token_expiry: datetime | None = None
+        self.enable_writes = os.getenv('AZUL_ENABLE_WRITES', '').strip().lower() in {'true', '1', 'yes', 'sim'}
 
     def authenticate(self) -> str:
         if not self.email or not self.senha:
@@ -73,6 +74,8 @@ class AzulCargoClient:
         return response.json()
 
     def authenticated_post(self, endpoint: str, payload: dict[str, Any]) -> dict[str, Any]:
+        if endpoint in {'EmissaoAWB/Enviar', 'EmissaoAWB/EnviarCte', 'AzulBox/Enviar', 'CancelamentoMinuta/Cancelar'} and not self.enable_writes:
+            raise ValueError('Escritas Azul bloqueadas por padrão. Configure AZUL_ENABLE_WRITES e reinicie somente após revisar custos e confirmação; use o sistema de origem.')
         payload_with_token = {"Token": self.get_token(), **payload}
         return self.post(endpoint, payload_with_token)
 
