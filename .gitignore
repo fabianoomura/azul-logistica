@@ -32,3 +32,6 @@ downloads_cte/
 .idea/
 .DS_Store
 Thumbs.db
+
+# logs de erro locais do servidor MCP
+*_err*.log
